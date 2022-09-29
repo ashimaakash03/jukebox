@@ -18,7 +18,7 @@ public class Song {
             this.duration = duration;
         }
 
-        public Song(String songname, String artistname, String songgenre, String duration) {
+        public Song(String songname, String artistname, String songgenre, String duration, String songDuration) {
             this.songname = songname;
             this.artistname = artistname;
             this.albumname= albumname;

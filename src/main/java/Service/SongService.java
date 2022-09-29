@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SongService {
 
-    SongDAO songdao;
+    public SongDAO songdao;
     Song song;
     ArrayList<Song> songlist= new ArrayList<>();
 
@@ -20,7 +20,11 @@ public class SongService {
         return songdao.selectAllSongs();
     }
 
-    private Song getASongByName(ArrayList<Song> songlist, String songname) throws SQLException {
+    private Song getASongByName(ArrayList<Song> songlist, String songname)
+            throws SQLException, JukeboxException {
+        if(songname.isEmpty()){
+            throw new JukeboxException("Search a song");
+        }
         Song selectedsong= null;
         for(Song list: songlist){
             if (songlist.contains(song)){
@@ -32,7 +36,7 @@ public class SongService {
         return selectedsong;
     }
 
-    public boolean addSong(ArrayList<Song> songlist, Song song) throws SQLException {
+    public boolean addSong(ArrayList<Song> songlist, Song song) throws SQLException, JukeboxException {
         boolean flag= true;
         for(Song list: songlist){
             if (getASongByName(songlist, song.getSongname())==null)
